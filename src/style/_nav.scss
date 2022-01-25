@@ -1,0 +1,16 @@
+nav {
+  height:10vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  button {
+    padding:.5rem 1rem;
+    background: transparent;
+    border:2px solid #b3eac0;
+    cursor: pointer;
+    transition: all .5s ease;
+    &:hover {
+      background:#b3eac0;
+    }
+  }
+}

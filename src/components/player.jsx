@@ -17,7 +17,7 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
   // start change play icon 
 
   const getBadgeClass = () => {
-    let classes  = 'fas fa-2x fa-';
+    let classes = 'fas fa-2x fa-';
     classes += isPlaying === true ? 'pause' : 'play';
     return classes;
   }
@@ -45,7 +45,7 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
   // start Input Slider Update 
   const dragHandler = (e) => {
     audioRef.current.currentTime = e.target.value;
-    setSongInfo({...songInfo, currentTime: e.target.value});
+    setSongInfo({ ...songInfo, currentTime: e.target.value });
   }
   // End Input Slider Update 
 
@@ -60,7 +60,7 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
         <p>{getTime(songInfo.currentTime)}</p>
         <input
           min={0}
-          max={songInfo.duration}
+          max={songInfo.duration || 0}
           value={songInfo.currentTime}
           type="range"
           onChange={dragHandler}
