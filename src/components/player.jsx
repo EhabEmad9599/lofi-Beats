@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
-const Player = ({ currentSong, isPlaying, setIsPlaying, audioRef, songInfo, setSongInfo }) => {
-
+const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
+  //Ref
+  const audioRef = useRef(null);
   // Event Handlers
   const playSongHandler = () => {
     if (isPlaying) {
@@ -23,6 +24,14 @@ const Player = ({ currentSong, isPlaying, setIsPlaying, audioRef, songInfo, setS
 
   // End change play icon 
 
+
+  // start update song time
+  const timeUpdateHandler = (e) => {
+    const current = e.target.currentTime;
+    const duration = e.target.duration;
+    setSongInfo({ ...songInfo, currentTime: current, duration: duration });
+  };
+
   //Start format Time
   const getTime = (time) => {
     return (
@@ -31,6 +40,7 @@ const Player = ({ currentSong, isPlaying, setIsPlaying, audioRef, songInfo, setS
   };
   // End format Time
 
+  // End update song time
 
   // start Input Slider Update 
   const dragHandler = (e) => {
@@ -39,6 +49,11 @@ const Player = ({ currentSong, isPlaying, setIsPlaying, audioRef, songInfo, setS
   }
   // End Input Slider Update 
 
+  // State
+  const [songInfo, setSongInfo] = useState({
+    currentTime: 0,
+    duration: 0,
+  });
   return (
     <article className="player">
       <section className="time-control">
@@ -58,7 +73,12 @@ const Player = ({ currentSong, isPlaying, setIsPlaying, audioRef, songInfo, setS
         <i onClick={playSongHandler} className={getBadgeClass()}></i>
         <i className="fas fa-step-forward fa-2x"></i>
       </section>
-
+      <audio
+        onTimeUpdate={timeUpdateHandler}
+        onLoadedMetadata={timeUpdateHandler}
+        ref={audioRef}
+        src={currentSong.audio}
+      ></audio>
     </article>
   );
 };
