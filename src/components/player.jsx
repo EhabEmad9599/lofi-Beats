@@ -13,6 +13,14 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
       setIsPlaying(!isPlaying);
     }
   };
+  // start check if the song is playing
+  const autoPlayHandler = () => {
+    if (isPlaying) {
+      audioRef.current.play();
+    }
+  }
+  // End check if the song is playing
+
 
   // start change play icon 
 
@@ -76,6 +84,7 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
       <audio
         onTimeUpdate={timeUpdateHandler}
         onLoadedMetadata={timeUpdateHandler}
+        onLoadedData={autoPlayHandler}
         ref={audioRef}
         src={currentSong.audio}
       ></audio>
