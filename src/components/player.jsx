@@ -41,7 +41,7 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
   };
 
   //Start format Time
-  const getTime = (time) => {
+  const formatTime = (time) => {
     return (
       Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
     );
@@ -65,7 +65,7 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
   return (
     <article className="player">
       <section className="time-control">
-        <p>{getTime(songInfo.currentTime)}</p>
+        <p>{formatTime(songInfo.currentTime)}</p>
         <input
           min={0}
           max={songInfo.duration || 0}
@@ -73,7 +73,7 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
           type="range"
           onChange={dragHandler}
         ></input>
-        <p>{getTime(songInfo.duration)}</p>
+        <p>{formatTime(songInfo.duration)}</p>
       </section>
 
       <section className="section play-control">
