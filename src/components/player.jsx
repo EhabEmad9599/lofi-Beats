@@ -36,7 +36,15 @@ const Player = ({ currentSong, isPlaying, setIsPlaying, songs, setCurrentSong })
 
     }
   }
-  // End skip back and forward function
+  // End skip back and forward function 
+
+  // Start skip track handler
+  const songEndHandler = async () => {
+    let currentIndex = songs.findIndex((song)=> song.id === currentSong.id)
+    await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+    if (isPlaying) audioRef.current.play();
+  }
+  // End skip track handler
 
 
   // start change play icon 
@@ -102,6 +110,7 @@ const Player = ({ currentSong, isPlaying, setIsPlaying, songs, setCurrentSong })
         onTimeUpdate={timeUpdateHandler}
         onLoadedMetadata={timeUpdateHandler}
         onLoadedData={autoPlayHandler}
+        onEnded={songEndHandler}
         ref={audioRef}
         src={currentSong.audio}
       ></audio>
