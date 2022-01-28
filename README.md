@@ -6,7 +6,7 @@ to get the project running, follow these steps:
 - clone this repository:
 
 ```html
-https://github.com/EhabEmad9599/Movie-app.git
+https://github.com/EhabEmad9599/lofi-Beats.git
 ```
 - install all the project's dependencies
 ``` html
