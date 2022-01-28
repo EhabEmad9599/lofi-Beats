@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 
-const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
+const Player = ({ currentSong, isPlaying, setIsPlaying, songs, setCurrentSong }) => {
   //Ref
   const audioRef = useRef(null);
   // Event Handlers
@@ -20,6 +20,23 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
     }
   }
   // End check if the song is playing
+
+  // start skip back and forward function
+  const skipTrackHandler = (direction) => {
+    let currentIndex = songs.findIndex((song)=> song.id === currentSong.id)
+    if (direction === 'skipForward') {
+      setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+    }
+    if (direction === 'skipBack') {
+      if((currentIndex - 1) % songs.length === -1) {
+        setCurrentSong(songs[songs.length -1]);
+        return;
+      }
+      setCurrentSong(songs[(currentIndex - 1) % songs.length]);
+
+    }
+  }
+  // End skip back and forward function
 
 
   // start change play icon 
@@ -77,9 +94,9 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
       </section>
 
       <section className="section play-control">
-        <i className="fas fa-step-backward fa-2x"></i>
+        <i onClick={() => skipTrackHandler('skipBack')} className="fas fa-step-backward fa-2x"></i>
         <i onClick={playSongHandler} className={getBadgeClass()}></i>
-        <i className="fas fa-step-forward fa-2x"></i>
+        <i onClick={() => skipTrackHandler('skipForward')} className="fas fa-step-forward fa-2x"></i>
       </section>
       <audio
         onTimeUpdate={timeUpdateHandler}
