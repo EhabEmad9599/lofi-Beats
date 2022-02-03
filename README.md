@@ -17,3 +17,8 @@ npm install
 ```html
 npm start
 ```
+
+## Screenshots 
+
+<img src="https://github.com/EhabEmad9599/lofi-Beats/blob/main/1.png">
+<img src="https://github.com/EhabEmad9599/lofi-Beats/blob/main/2.png">
