@@ -1,7 +1,7 @@
 # Lfoi-beats
 
 ## Getting Started
-This is an list of needed instructions to set up your project locally, to get a local copy up and running follow these instructuins.
+> This is an list of needed instructions to set up your project locally, to get a local copy up and running follow these instructuins.
 
 ### Installing
 to get the project running, follow these steps:
